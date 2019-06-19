@@ -84,3 +84,45 @@ body, input, button {
   font-size: 15px;
   font-weight: initial;
 }
+
+.register-step {
+  padding: 20px;
+}
+
+.register-step form {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.register-step form .profile-form {
+  width: 50%;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+
+.register-step form .profile-form svg {
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.register-step form .profile-form label {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-left: 100px;
+}
+
+.register-step form .profile-form label input, .register-step select {
+  width: 200px;
+  margin-top: 20px;
+  height: 25px;
+  padding: 2px;
+}
+
+.register-step select {
+  height: 30px;
+}
