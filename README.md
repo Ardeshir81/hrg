@@ -1,4 +1,14 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# HRG
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), so all scripts apply. **But note that `start` script has been altered.**
+
+## TODO (bugs, features, fixes, remaining)
+
+- form validation
+- error handling (especially on HTTP requests)
+- fully adapt real API
+- responsive UI
+- refactor mumble CSS code
 
 ## Available Scripts
 
@@ -8,6 +18,7 @@ In the project directory, you can run:
 
 Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Also concurrently runs mock backend server on [http://localhost:48736](http://localhost:48736)
 
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
