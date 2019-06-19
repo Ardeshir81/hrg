@@ -5,11 +5,11 @@ import { faUserCircle, faUserPlus, faCalendarAlt } from '@fortawesome/free-solid
 
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 
-export default function Profile({ disabled, onSubmit }) {
-    const [firstName, setFirstName] = React.useState('');
-    const [lastName, setLastName] = React.useState('');
-    const [birthDate, setBirthDate] = React.useState('');
-    const [relationship, setRelationship] = React.useState('father');
+export default function Profile({ disabled, onSubmit, userData = {} }) {
+    const [firstName, setFirstName] = React.useState(userData.firstName || '');
+    const [lastName, setLastName] = React.useState(userData.lastName || '');
+    const [birthDate, setBirthDate] = React.useState(userData.birthDate || '');
+    const [relationship, setRelationship] = React.useState(userData.relationship || 'father');
     const dateInputDom = React.useRef();
 
     function submitForm() {

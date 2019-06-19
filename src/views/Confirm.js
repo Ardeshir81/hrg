@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle, faKey } from '@fortawesome/free-solid-svg-icons'
 
 import babyImg from '../assets/baby.png';
+import { httpService } from '../services/http.service';
 
 const inputsSymbol = [0, 1, 2, 3, 4];
 
@@ -28,8 +29,15 @@ export default function Verify() {
     }
 
     function submitForm() {
-        console.log(verificationKey.join(''));
-        setGoToStepThree(true);
+        httpService.generatePasscode(verificationKey.join(''))
+            .then(response => {
+                if (response.ok) {
+                    setGoToStepThree(true);
+                }
+            })
+            .catch(() => {
+                setGoToStepThree(true);
+            })
     }
 
     React.useEffect(() => {

@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle, faEnvelope } from '@fortawesome/free-solid-svg-icons'
 
 import babyImg from '../assets/baby.png';
+import { httpService } from '../services/http.service';
 
 export default function EnterMobile() {
     const [countryCode, setCountryCode] = React.useState('+98');
@@ -13,7 +14,15 @@ export default function EnterMobile() {
 
     function submitForm() {
         console.log({ countryCode, phoneNumber });
-        setGoToStepTwo(true);
+        httpService.generatePasscode(countryCode + phoneNumber)
+            .then(response => {
+                if (response.ok) {
+                    setGoToStepTwo(true);
+                }
+            })
+            .catch(() => {
+                setGoToStepTwo(true);
+            })
     }
 
     if (goToStepTwo) {
@@ -32,7 +41,7 @@ export default function EnterMobile() {
                     <p>Enter your phone number.</p>
                     <div className="mobile-input">
                         <input className="big-input" type={'text'} value={countryCode} onChange={e => setCountryCode(e.target.value)} placeholder={'+1-99'} />
-                        <input className="big-input phone-input" type={'text'} placeholder={'--- --- -- --'} onChange={e => setPhoneNumber(e.target.value)} maxLength={10} />
+                        <input autoFocus className="big-input phone-input" type={'text'} placeholder={'--- --- -- --'} onChange={e => setPhoneNumber(e.target.value)} maxLength={10} />
                     </div>
                     <button className="big-button" type="submit">
                         <FontAwesomeIcon icon={faEnvelope} size={'2x'} /> <span>Send Code</span>
