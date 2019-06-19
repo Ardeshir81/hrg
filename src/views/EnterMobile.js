@@ -6,7 +6,7 @@ import { faUserCircle, faEnvelope } from '@fortawesome/free-solid-svg-icons'
 
 import babyImg from '../assets/baby.png';
 
-export default function EnterMobile(props) {
+export default function EnterMobile() {
     const [countryCode, setCountryCode] = React.useState('+98');
     const [phoneNumber, setPhoneNumber] = React.useState('');
     const [goToStepTwo, setGoToStepTwo] = React.useState(false);
