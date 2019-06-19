@@ -27,17 +27,27 @@ body, input, button {
   justify-content: center;
 }
 
-.mobile-step {
+.mobile-step, .verify-step {
   display: flex;
   flex-direction: row;
   align-items: center
 }
 
-.mobile-step img {
+.verify-step .verify-input {
+  display: flex;
+  flex-direction: row;
+}
+
+.verify-step .verify-input input {
+  margin: 0 5px;
+  text-align: center;
+}
+
+.mobile-step img, .verify-step img {
   max-width: 400px;
 }
 
-.mobile-step form {
+.mobile-step form, .verify-step form {
   display: flex;
   flex-direction: column;
   align-items: center;
