@@ -29,11 +29,9 @@ export default function Verify() {
     }
 
     function submitForm() {
-        httpService.generatePasscode(verificationKey.join(''))
+        httpService.checkPasscode(verificationKey.join(''))
             .then(response => {
-                if (response.ok) {
-                    setGoToStepThree(true);
-                }
+                setGoToStepThree(true);
             })
             .catch(() => {
                 setGoToStepThree(true);
@@ -57,7 +55,7 @@ export default function Verify() {
                     submitForm();
                 }}>
                     <FontAwesomeIcon icon={faUserCircle} size={'10x'} />
-                    <p>Enter your phone number.</p>
+                    <p>Enter passcode!</p>
                     <div className="verify-input">
                         {inputsSymbol.map(index => (
                             <input ref={refsMap[index]} value={verificationKey[index] || ''} onChange={e => {

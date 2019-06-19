@@ -15,10 +15,8 @@ export default function EnterMobile() {
     function submitForm() {
         console.log({ countryCode, phoneNumber });
         httpService.generatePasscode(countryCode + phoneNumber)
-            .then(response => {
-                if (response.ok) {
-                    setGoToStepTwo(true);
-                }
+            .then(() => {
+                setGoToStepTwo(true);
             })
             .catch(() => {
                 setGoToStepTwo(true);

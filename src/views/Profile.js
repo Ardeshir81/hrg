@@ -21,6 +21,13 @@ export default function Profile({ disabled, onSubmit, userData = {} }) {
         })
     }
 
+    React.useEffect(() => {
+        setFirstName(userData.firstName);
+        setLastName(userData.lastName);
+        setBirthDate(userData.birthDate);
+        setRelationship(userData.relationship);
+    }, [userData])
+
     return (
         <div className="register-step">
             <FontAwesomeIcon icon={faUserCircle} size={'10x'} />
@@ -31,19 +38,20 @@ export default function Profile({ disabled, onSubmit, userData = {} }) {
                 <div className="profile-form">
                     <label>
                         First Name
-                        <input onChange={e => setFirstName(e.target.value)} disabled={disabled} />
+                        <input defaultValue={firstName} onChange={e => setFirstName(e.target.value)} disabled={disabled} autoFocus />
                     </label>
                 </div>
                 <div className="profile-form">
                     <label>
                         Last Name
-                        <input onChange={e => setLastName(e.target.value)} disabled={disabled} />
+                        <input defaultValue={lastName} onChange={e => setLastName(e.target.value)} disabled={disabled} />
                     </label>
                 </div>
                 <div className="profile-form">
                     <label>
                         Year of birth
                             <DayPickerInput
+                            defaultValue={firstName}
                             ref={dateInputDom}
                             value={birthDate}
                             onDayChange={date => setBirthDate(date)}

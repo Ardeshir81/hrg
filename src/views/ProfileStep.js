@@ -9,10 +9,8 @@ export default function ProfileStep() {
     const [userData, setUserData] = React.useState({});
 
     React.useEffect(() => {
-        httpService.getUserProfile().then(response => {
-            if (response.ok) {
-                setUserData(userData)
-            }
+        httpService.getUserProfile().then(result => {
+            setUserData(result)
         })
     }, [])
 

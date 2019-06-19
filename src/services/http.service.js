@@ -1,4 +1,4 @@
-const baseApi = 'http://127.0.0.1';
+const baseApi = 'http://127.0.0.1:48736';
 
 // lsk stands for "Local Storage Key"
 const lastSubmittedMobileNumber_lsk = 'hrg-last_submitted_mobile_number';
@@ -16,11 +16,18 @@ export const httpService = {
             return true;
         })
     },
-    generatePasscode(passcode) {
+    checkPasscode(passcode) {
         return fetch(`${baseApi}/check-passcode/?passcode=${passcode}&mobile_number=${this.getLastSubmittedMobileNumber() || ''}`, {
             headers: {
                 'Content-Type': 'application/json',
             },
+        }).then(response => {
+            if (response.ok) {
+                return response.json().then(result => {
+                    this.setAuthorizationToken(result.token)
+                    return true;
+                })
+            }
         })
     },
     register(userData) {
@@ -36,6 +43,13 @@ export const httpService = {
                 birth_year: userData.birthDate,
                 relationship_type: userData.relationship,
             })
+        }).then(response => {
+            if (response.ok) {
+                return response.json().then(result => {
+                    this.setAuthorizationToken(result.token)
+                    return true;
+                })
+            }
         })
     },
     getUserProfile() {
@@ -45,13 +59,14 @@ export const httpService = {
             }
         }).then(response => {
             if (response.ok) {
-                const result = response.json();
-                return {
-                    firstName: result.first_name,
-                    lastName: result.last_name,
-                    birthDate: result.birth_year,
-                    relationship: result.relationship_type,
-                }
+                return response.json().then(result => {
+                    return {
+                        firstName: result.first_name,
+                        lastName: result.last_name,
+                        birthDate: result.birth_year,
+                        relationship: result.relationship_type,
+                    }
+                })
             }
             throw new Error('Repose not ok');
         })
@@ -62,7 +77,7 @@ export const httpService = {
     getLastSubmittedMobileNumber() {
         localStorage.getItem(lastSubmittedMobileNumber_lsk);
     },
-    getAuthorizationToken(token) {
+    setAuthorizationToken(token) {
         localStorage.setItem(authToken_lsk, token);
     },
     getAuthorizationToken() {
